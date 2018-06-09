@@ -1,0 +1,31 @@
+.option_entreprise { margin-bottom: 20px; }
+
+.new_entreprise { margin-bottom: 20px; }
+
+input[type="text"], .new-input-mail
+{
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding-left: 5px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="mail"]
+{
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding-left: 5px;
+  margin: 0 10px 10px 0;
+}
+
+.add-email { cursor: pointer; }
+
+input[type="submit"]
+{
+  background: #34C925;
+  border: 0px solid white;
+  color: white;
+  cursor: pointer;
+  height: 28px; width: 115px;
+}

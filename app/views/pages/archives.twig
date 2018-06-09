@@ -1,0 +1,51 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="../template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../template/css/sb-admin.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="<your_css>"> -->
+{% endblock %}
+
+{% block content %}
+  {% include 'header.twig' %}
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> Archives Clients
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Date de création</th>
+              <th>Fiche</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for lead in archives %}
+              <tr>
+                <td>{{ lead.nom }}</td>
+                <td>{{ lead.prenom }}</td>
+                <td>{{ lead.created_at }}</td>
+                <td><a href="/archives/{{ lead.id }}">Fiche</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {% include 'footer.twig' %}
+{% endblock %}
+
+{% block script %}
+  <script src="../template/vendor/jquery/jquery.min.js"></script>
+  <script src="../template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../template/js/sb-admin.min.js"></script>
+{% endblock %}

@@ -1,0 +1,114 @@
+.leads_options { position: relative; }
+
+.leads_options .nbr_selection { position: absolute; top: 20px; right: 50px; }
+
+.leads_options .nbr_selection input[type="number"] { margin: 2px 15px 0 0; }
+
+.leads_options .nbr_selection .fa { color: #377dae; float: right; margin-right: 5px; cursor: pointer; }
+
+.leads_options .send
+{
+  background: #377dae;
+  border: 0px solid white;
+  color: white;
+  cursor: pointer;
+  height: 28px; width: 115px;
+  border-radius: 5px;
+}
+
+.leads_options .send-large { width: 310px; }
+
+.disp_check { cursor: pointer; }
+
+.fa-trash-o { color: #007bff; cursor: pointer; }
+
+.fa-trahsh-o:hover { color: #0056B3; }
+
+.container_send { position: absolute; top: 70px; right: 95px; }
+
+.container_send .fa { margin-left: 20px; cursor: pointer; color: #377dae; }
+
+.table-responsive { min-height: 200px; }
+
+.multiselect { width: 200px; cursor: pointer; position: relative; }
+
+.selectBox select { width: 100%; }
+
+.overSelect
+{
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+}
+
+#checkboxes
+{
+  display: none;
+  border: 1px #dadada solid;
+  position: absolute; width: 200px; height: 0;
+  background: white;
+}
+
+#checkboxes label { display: block; font-weight: normal; cursor: pointer; padding-left: 5px; }
+
+#checkboxes label:hover { background-color: #1e90ff; }
+
+.ret_filter
+{
+  height: 75px; width: 40%; margin: 0 0 20px 20vw;
+  border: 1px solid grey;
+  border-radius: 10px;
+  overflow-y: scroll;
+  display: inline-block;
+}
+
+.log_filter
+{
+  height: 35px;
+  display: inline-block;
+  line-height: 2.3;
+  margin: 2px 5px 5px 5px; padding: 0 15px 0 15px;
+  background: #b1deef;
+  color: black;
+  cursor: pointer;
+}
+
+.log_filter i { margin-left: 5px; }
+
+.fa-ban
+{
+  color: #377dae;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.column-hidde
+{
+  height: 140px; width: 116px;
+  margin: 0 0 40px 120px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.column-hidde i { float: right; color: #2b81a0; }
+
+.ajax_gif_loader
+{
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(100,100,100,0.5);
+  height: 100%; width: 100%;
+  z-index: 999;
+  text-align: center;
+  padding-top: 10%;
+  display: none;
+}
+
+.loader-message
+{
+  position: absolute;
+  color: white;
+  height: 40px; width: 100%;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 30px;
+}

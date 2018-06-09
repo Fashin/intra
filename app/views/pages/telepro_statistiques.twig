@@ -1,0 +1,134 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="../template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/telepro_statistiques.css">
+{% endblock %}
+
+{% block content %}
+  {% include 'header.twig' %}
+  <div class="filter">
+    <select id="telepro_name">
+      <option value="all">Tous</option>
+    {% for id, telepro in telepros %}
+      {% if id != "total" %}
+        <option value="{{ id }}">{{ telepro.name }}</option>
+      {% endif %}
+    {% endfor %}
+    </select>
+    <label for="date_value">
+      Jour : <input type="date" id="date_value" name="date_value">
+    </label>
+    <label for="date_start">
+      De : <input type="date" id="date_start" name="date_start">
+    </label>
+    <label for="date_end">
+      A : <input type="date" id="date_end" name="date_end">
+    </label>
+    <button type="button" class="send_filter">Trier</button>
+  </div>
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> Statistiques des téléprospecteur
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered listStatistiques" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Pas interesser</th>
+              <th>Non Financeable</th>
+              <th>Hors Critere</th>
+              <th>Fausse Annonce</th>
+              <th>Rendez-vous</th>
+              <th>Signatures</th>
+              <th>Leads Envoyés</th>
+              <th>Taux Rendez-vous</th>
+              <th>Taux Signature</th>
+              <!-- <th>Fiches</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for id, telepro in telepros %}
+              {% if id != "total" %}
+                <tr>
+                  <td>{{ telepro.name }}</td>
+                  <td data-type="1">{{ telepro.value.pas_interesser }}</td>
+                  <td data-type="2">{{ telepro.value.non_financeable }}</td>
+                  <td data-type="3">{{ telepro.value.hors_critere }}</td>
+                  <td data-type="4">{{ telepro.value.fausse_annonce }}</td>
+                  <td data-type="5">{{ telepro.value.rendez_vous }}</td>
+                  <td data-type="6">{{ telepro.value.signature }}</td>
+                  <td>{{ telepro.value.total }}</td>
+                  <td>{{ telepro.value.transformation_rdv }} %</td>
+                  <td>{{ telepro.value.transformation_signature }} %</td>
+                  <!-- <td><a href="/telepro/display_date/{{ id }}">Voire</a></td> -->
+                  <input type="hidden" name="id_telepro" value="{{ id }}">
+                </tr>
+              {% endif %}
+            {% endfor %}
+            <tr>
+              <td>Total</td>
+              <td>{{ telepros['total']['pas_interesser'] }}</td>
+              <td>{{ telepros['total']['non_financeable'] }}</td>
+              <td>{{ telepros['total']['hors_critere'] }}</td>
+              <td>{{ telepros['total']['fausse_annonce'] }}</td>
+              <td>{{ telepros['total']['rendez_vous'] }}</td>
+              <td>{{ telepros['total']['signature'] }}</td>
+              <td>{{ telepros['total']['total'] }}</td>
+              <td>{{ telepros['total']['transformation_rdv'] }} %</td>
+              <td>{{ telepros['total']['transformation_signature'] }} %</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="pop_up">
+    <div class="content">
+      <div class="telepro-selector">
+        <select class="telepro-name">
+          {% for id, telepro in telepros %}
+            {% if id != "total" %}
+              <option value="{{ id }}">{{ telepro.name }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <i class="fa fa-telegram send_to_telepro" aria-hidden="true"></i>
+      </div>
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Liste des leads
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered listLeads" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Nom</th>
+                  <th>Prénom</th>
+                  <th>Téléphone</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'footer.twig' %}
+{% endblock %}
+
+{% block script %}
+  <script src="../template/vendor/jquery/jquery.min.js"></script>
+  <script src="../template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../template/js/sb-admin.min.js"></script>
+  <script src="../js/telepro_statistiques.js" charset="utf-8"></script>
+{% endblock %}

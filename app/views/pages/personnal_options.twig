@@ -1,0 +1,60 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/user_options.css">
+{% endblock %}
+
+{% block content %}
+  {% if type == "telemarketing" %}
+    {% include 'header-telepro.twig' %}
+  {% else %}
+    {% include 'header.twig' %}
+  {% endif %}
+    <input type="hidden" name="id_user" class="id_user" value="{{ user.id }}">
+    <form class="params" action="#" method="post">
+      <input type="password" name="new_password" placeholder="Votre nouveau mot de passe">
+      <input type="password" name="new_password_confirm" placeholder="Confirmer votre nouveau mot de passe">
+      <input type="password" name="old_password" placeholder="Votre ancien mot de passe">
+      <input type="submit" name="send" value="Modifié">
+    </form>
+    <form class="params params-avatar" action="/user/update_avatar" method="post" enctype="multipart/form-data">
+      <label for="avatar" class="avatar">Changer votre avatar :
+        <input type="file" name="avatar">
+      </label>
+      <input type="submit" name="send" value="Sauvegarder">
+    </form>
+    {% if type == "telemarketing" %}
+      <div class="color_save">
+        <label for="lead_selection">
+          <input type="color" id="lead_selection" name="lead_selection" value="{{ user.lead_selection }}"> Couleur de sélection des leads
+        </label> <br><br>
+        <label for="lead_color">
+          <input type="color" id="lead_color" name="lead_color" value="{{ user.lead_color }}"> Couleur des leads dans le tableau de bord
+        </label> <br><br>
+        <label for="lead_rappel">
+          <input type="color" id="lead_rappel" name="lead_rappel" value="{{ user.lead_rappel }}"> Couleur des rappels dans le tableau de bord
+        </label>
+      </div>
+    {% else %}
+      <div class="color_save">
+        <label for="color_scoreboard_rdv">
+          <input type="color" id="color_scoreboard_rdv" name="color_scoreboard" value="{{ configuration.scoreboard.rdv }}"> Couleur des rendez (scoreboard)
+        </label>
+        <label for="color_scoreboard_signature">
+          <input type="color" id="color_scoreboard_signature" name="color_scoreboard_signature" value="{{ configuration.scoreboard.signature }}"> Couleur des signatures (scoreboard)
+        </label>
+      </div>
+    {% endif %}
+  {% include 'footer.twig' %}
+{% endblock %}
+
+{% block script %}
+  <script src="template/vendor/jquery/jquery.min.js"></script>
+  <script src="template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="template/js/sb-admin.min.js"></script>
+  <script src="js/User.class.js" charset="utf-8"></script>
+{% endblock %}

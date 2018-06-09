@@ -1,0 +1,38 @@
+.ret_statistiques
+{
+  height: 25px; width: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-left: 10px;
+  color: white;
+  display: none;
+}
+
+.curve_label
+{
+  position: relative;
+  height: 55px;
+  width: 955px;
+  margin-left: 45px;
+  font-size: 10px;
+}
+
+.curve_row
+{
+  float: right;
+  width: 150px;
+  height: 300px;
+  position: relative;
+  right: 20vw;
+  bottom: 350px;
+}
+
+.row_color
+{
+  height: 8px; width: 40px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.filtres { height: 100px; margin-bottom: 50px; }
+
+.multiselect { display: inline-block; }

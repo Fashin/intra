@@ -1,0 +1,91 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+{% endblock %}
+
+{% block content %}
+  {% include 'header.twig' %}
+  <div class="hidden_statistiques_dashboard" style="display:none">
+    {% for statistique in statistiques %}
+      {{ statistique }}
+    {% endfor %}
+  </div>
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-area-chart"></i> Statistiques de la semaine</div>
+    <div class="card-body">
+      <canvas id="myAreaChart" width="100%" height="30"></canvas>
+    </div>
+    <div class="card-footer small text-muted">Mise à jour en live</div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> Liste des campages
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Lien</th>
+              <th>Formulaire</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Nom</th>
+              <th>Lien</th>
+              <th>Formulaire</th>
+            </tr>
+          </tfoot>
+          <tbody>
+          {% for k, site in sites %}
+            {% if k == 0 %}
+              <tr>
+                <td>Toutes les campagnes</td>
+                <td><a href="/leads/all">Toutes les campagnes</a></td>
+                <td>
+                  <a href="http://leads.objectifsolaire.com" target="_blank">
+                    <button type="button" name="button" class="btn-form">Vers le Hub</button>
+                  </a>
+                </td>
+              </tr>
+            {% endif %}
+            <tr>
+              <td>{{site.name}}</td>
+              <td><a href="/leads/{{site.name}}">{{site.name}}</a></td>
+              <td>
+                <a href="{{ site.link }}" target="_blank">
+                  <button type="button" class="btn-form">{{ site.name }}</button>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer small text-muted">Mise à jour en live</div>
+  </div>
+</div>
+  {% include 'footer.twig' %}
+{% endblock %}
+
+{% block script %}
+  <script src="template/vendor/jquery/jquery.min.js"></script>
+  <script src="template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="template/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="template/vendor/chart.js/Chart.min.js"></script>
+  <script src="template/vendor/datatables/jquery.dataTables.js"></script>
+  <script src="template/vendor/datatables/dataTables.bootstrap4.js"></script>
+  <script src="template/js/sb-admin.min.js"></script>
+  <script src="template/js/sb-admin-datatables.min.js"></script>
+  <script src="template/js/sb-admin-charts.js"></script>
+
+{% endblock %}

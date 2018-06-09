@@ -1,0 +1,14 @@
+.delete-rappel
+{
+  font-size: 22px;
+  margin-left: 20px;
+  cursor: pointer;
+  color: #377DAE;
+}
+
+.new_day
+{
+  border-top: 3px solid black !important;
+  height: 1px;
+  margin: 0; padding: 0 !important;
+}

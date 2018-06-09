@@ -1,0 +1,24 @@
+.container-telepro .pseudo
+{
+  text-transform: capitalize;
+  color: #377DAE;
+  font-weight: bold;
+}
+
+.container-telepro .content
+{
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  padding: 10px;
+  overflow-y: scroll;
+  height: 100px;
+}
+
+.container-telepro .content .container-lead
+{
+  display: inline-block;
+  background: #B1DEEF;
+  margin: 10px; padding: 10px;
+}
+
+.container-telepro .content .container-lead .suppr-lead { margin: 0 5px 0 5px; cursor: pointer; }

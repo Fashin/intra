@@ -1,0 +1,62 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="../template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/archived_lead_one.css">
+{% endblock %}
+
+{% block content %}
+  {% include 'header.twig' %}
+    <!-- {{ dump(leads) }} -->
+    <div class="container">
+      <div class="row">
+        <span class="title">Nom : </span><span class="content"> {{ leads.nom }}</span>
+        <span class="title">Prenom : </span><span class="content"> {{ leads.prenom }}</span>
+        <span class="title">Numero de telephone : </span><span class="content"> {{ leads.telephone }}</span>
+        <span class="title">Adresse : </span><span class="content"> {{ leads.content.adresse }}</span>
+        <span class="title">Code Postal : </span><span class="content"> {{ leads.code_postal }}</span>
+        <span class="title">Email : </span><span class="content"> {{ leads.email }}</span>
+        <span class="title">Nom du telepro : </span><span class="content"> {{ leads.nom_telepro }}</span>
+        <span class="title">Campagne : </span><span class="content"> {{ leads.site }}</span>
+        <span class="title">Date de création : </span><span class="content"> {{ leads.created_at }}</span>
+      </div>
+      <div class="row">
+        <span class="title">Projet : </span><span class="content"> {{ leads.projet }}</span>
+        <span class="title">Situation : </span><span class="content"> {{ leads.situation }}</span>
+        <span class="title">Bien : </span><span class="content"> {{ leads.bien }}</span>
+        <span class="title">Revenue : </span><span class="content"> {{ leads.revenue }}</span>
+        <span class="title">Profession : </span><span class="content"> {{ leads.profession }}</span>
+      </div>
+      <div class="row">
+        <span class="title">Entretien prit avec : </span><span class="content"> {{ leads.content.entretien }}</span>
+        <span class="title">Type de bien : </span><span class="content"> {{ leads.content.type_de_bien }}</span>
+        <span class="title">Situation personnelle : </span><span class="content"> {{ leads.content.situation }}</span>
+        <span class="title">Monsieur : </span><span class="content"> {{ leads.content.monsieur.age }} / {{ leads.content.monsieur.activite }} / {{ leads.content.monsieur.revenue}}</span>
+        <span class="title">Madame : </span><span class="content"> {{ leads.content.madame.age }} / {{ leads.content.madame.activite }} / {{ leads.content.madame.revenue }}</span>
+        <span class="title">Travaux : </span><span class="content"> {{ leads.content.travaux }}</span>
+        <span class="title">Superficie : </span><span class="content"> {{ leads.content.superficie }}</span>
+        <span class="title">Enfant : </span><span class="content"> {{ leads.content.enfant }} => {{ leads.content.nbr_enfant }}</span>
+        <span class="title">Type de chauffage : </span><span class="content"> {{ leads.content.chauffage }}</span>
+        <span class="title">Facture : </span><span class="content"> {{ leads.content.facture }}</span>
+      </div>
+      <div class="row">
+        <span class="title">Date de rendez-vous : </span><span class="content"> {{ leads.content.date }} à  {{ leads.content.horaire }}</span>
+        <span class="title">Enfants : </span><span class="content"> {{ leads.content.enfant }}</span>
+        <span class="title">Credit : </span><span class="content"> {{ leads.content.credit }} => {{ leads.content.montant }}</span>
+        <span class="title">Enfants : </span><span class="content"> {{ leads.content.enfant }} => {{ leads.content.nbr_enfant }}</span>
+      </div>
+      <div class="row">
+        <span class="title">Commentaire du telepro : </span><span class="content"> {{ leads.content.commentaire }}</span>
+      </div>
+    </div>
+  {% include 'footer.twig' %}
+{% endblock %}
+
+{% block script %}
+  <script src="../template/vendor/jquery/jquery.min.js"></script>
+  <script src="../template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../template/js/sb-admin.min.js"></script>
+{% endblock %}

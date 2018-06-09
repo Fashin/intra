@@ -1,0 +1,63 @@
+.form_telepro { margin-left: 30%; width: 600px; }
+
+.form_block { display: block; }
+
+.lead_title { font-weight: bold; color: #377dae; }
+
+.select-large { height: 36px; margin-top: 3px; padding-left: 10px; }
+
+.right { float: right; margin-right: 100px; }
+
+.large-input { width: 500px; height: 60px; padding-left: 10px; }
+
+.long-input { width: 400px; height: 40px; padding-left: 10px; }
+
+.medium-input { width: 200px; height: 40px; padding-left: 10px; }
+
+.comment-input { height: 150px; width: 500px; margin-bottom: 20px; resize: none; padding-left: 10px; }
+
+.input
+{
+  border: 0px;
+  border-bottom: 1px solid lightgrey;
+  outline: none;
+  color: grey;
+}
+
+.btn-submit
+{
+  border-radius: 5px;
+  background: #377dae;
+  color: white;
+  border: 0px;
+  cursor: pointer;
+  outline: none;
+  height: 40px; width: 160px;
+  margin-bottom: 10px;
+}
+
+#table-agenda
+{
+  background: white;
+  position: absolute;
+  top: 80px; left: 20%;
+  width: 70%;
+}
+
+.pop_up
+{
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  height: 100%; width: 100%;
+  background: rgba(96, 96, 96, 0.5);
+  display: none;
+}
+
+.pop_up .date-container
+{
+  background: white;
+  width: 40%; height: 40%;
+  margin: 14vh 0 0 35vw;
+  text-align: center;
+  padding-top: 60px;
+}

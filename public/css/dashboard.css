@@ -1,0 +1,11 @@
+.btn-form
+{
+  background: #34C925;
+  border: 0px solid white;
+  color: white;
+  cursor: pointer;
+  height: 28px; width: 115px;
+  border-radius: 5px;
+}
+
+.btn-form-head { float: right; margin-left: 50px; }

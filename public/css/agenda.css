@@ -1,0 +1,11 @@
+#table-agenda { border-collapse: collapse; }
+
+#table-agenda tr { text-align: center; }
+
+#table-agenda td { border: 1px solid black; cursor: pointer; text-align: center; }
+
+.empty { width: 200px; text-align: center; }
+
+.th-btn { width: 70px; }
+
+.btn-next { color: #377DAE; cursor: pointer; }

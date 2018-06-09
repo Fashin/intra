@@ -1,0 +1,133 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="../template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/facture_details.css">
+  <link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
+{% endblock %}
+
+{% block content %}
+  {% include 'header.twig' %}
+  <a href="/factures"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a>
+  <form class="entreprise" action="/factures/{{ entreprise.id }}" method="post">
+    <label for="nom">Nom : <input type="text" id="nom" class="input_update" name="nom" value="{{entreprise.nom}}"></label>
+    {% for k, email in emails %}
+      <label for="email">Email : <input type="text" id="email" class="input_update input_mail" name="email-{{k}}" value="{{email}}"></label>
+    {% endfor %}
+    <label for="rue">Adresse : <input type="text" id="rue" class="input_update" name="rue" value="{{entreprise.rue}}"></label>
+    <label for="ville">Ville : <input type="text" id="ville" class="input_update" name="ville" value="{{entreprise.ville}}"></label>
+    <label for="cp">Code Postal : <input type="text" id="cp" class="input_update" name="code_postal" value="{{entreprise.code_postal}}"> </label>
+    <label for="prix">Prix Unitaire : <input type="text" id="prix" class="input_update" name="prix_unitaire" value="{{entreprise.prix_unitaire}}">(€)</label>
+    <label for="offre">Offrire : <input type="number" name="offre" class="input_update" name="offre" value="0"> </label>
+    <input type="hidden" name="num_facture" value="{{ num_facture }}">
+    <input type="submit" class="input_send" name="send" value="Modifier">
+  </form>
+
+  <form  id="upload_form" method="post" action="/factures/{{entreprise.id}}/send_facture"  ENCTYPE="multipart/form-data">
+    Générer une facture : <input name="list_leads" type="file" id="upload_file"/>
+    <input type="hidden" name="envoie_nom_entreprise" value="{{entreprise_envoie.nom_entreprise}}">
+    <input type="hidden" name="envoie_adresse_entreprise" value="{{entreprise_envoie.adresse_entreprise }}">
+    <input type="hidden" name="envoie_code_postal_entreprise" value="{{entreprise_envoie.code_postal_entreprise }}">
+    <input type="hidden" name="envoie_ville_entreprise" value="{{entreprise_envoie.ville_entreprise }}">
+    <input type="hidden" name="envoie_numero_siret" value="{{entreprise_envoie.numero_siret }}">
+    <button type="button" id="generate">Générer</button>
+  </form>
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-table"></i> Historique des transactions avec l'entreprise</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Date d'envoie</th>
+              <th>Nombre de leads envoyé</th>
+              <th>Prix total hors taxe</th>
+              <th>Montant de la TVA</th>
+              <th>Prix total avec TVA (20%)</th>
+              <th>Offert</th>
+              <th>Paiement</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Date de l'envoie du lead</th>
+              <th>Nombre de lead envoyé</th>
+              <th>Prix total hors taxe</th>
+              <th>Montant de la TVA</th>
+              <th>Prix total avec TVA (20%)</th>
+              <th>Offert</th>
+              <th>Paiement</th>
+            </tr>
+          </tfoot>
+          <tbody id="tableContent">
+            {% for key, value in historique %}
+            <tr>
+              <td>{{ key }}</td>
+              <td>{{ value.nbr_lead_envoye }}</td>
+              <td>{{ value.prix_total_hors_tva }}</td>
+              <td>{{ value.montant_tva }}</td>
+              <td>{{ value.prix_total_tva }}</td>
+              <td>{{ value.offre }}</td>
+              <td class="switch-field">
+                {% if value.payer == 1 %}
+                  <form class="" action="#" method="post">
+                    <input type="radio" name="paiement" id="payement-{{ key }}" value="1" checked>
+                    <label for="payement-{{ key }}">Payé</label>
+                    <input type="radio" name="paiement" id="in_waiting-{{ key }}" value="0">
+                    <label for="in_waiting-{{ key }}">En attente</label>
+                    <input type="hidden" name="id_entreprise" value="{{ entreprise.id }}">
+                    <input type="hidden" name="id_historique" value="{{ key }}">
+                  </form>
+                {% else %}
+                  <form class="" action="#" method="post">
+                    <input type="radio" name="paiement" id="payement-{{ key }}" value="1">
+                    <label for="payement-{{ key }}">Payé</label>
+                    <input type="radio" name="paiement" id="in_waiting-{{ key }}" value="0" checked>
+                    <label for="in_waiting-{{ key }}">En attente</label>
+                    <input type="hidden" name="id_entreprise" value="{{ entreprise.id }}">
+                    <input type="hidden" name="id_historique" value="{{ key }}">
+                  </form>
+                {% endif %}
+              </td>
+              <td>
+                <i class="poubelle fa fa-trash-o fa-2x" aria-hidden="true" id_entreprise="{{ entreprise.id }}" id_historique="{{ key }}"></i>
+              </td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td>Total</td>
+              <td>{{ total.nbr_lead_envoye }}</td>
+              <td>{{ total.prix_total_hors_tva }}</td>
+              <td>{{ total.montant_tva }}</td>
+              <td>{{ total.prix_total_tva }}</td>
+              <td>{{ total.offert }}</td>
+              <td>Total</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+  </div>
+</div>
+  {% include 'footer.twig' %}
+{% endblock %}
+
+{% block script %}
+  <script src="../template/vendor/jquery/jquery.min.js"></script>
+  <script src="../template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../template/js/sb-admin.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../js/jsPDF_font_custom/dist/jspdf.customfonts.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../js/jsPDF_font_custom/dist/default_vfs.js"></script>
+  <script src="../js/i_m_the_boss.js" charset="utf-8"></script>
+  <script src="../js/fileSaver.js" charset="utf-8"></script>
+  <script src="../js/jszip.min.js" charset="utf-8"></script>
+  <script src="../js/jsPDF/dist/jspdf.debug.js" charset="utf-8"></script>
+  <script src="../js/file_upload.js" charset="utf-8"></script>
+  <script src="../js/facture_detail_control.js" charset="utf-8"></script>
+{% endblock %}

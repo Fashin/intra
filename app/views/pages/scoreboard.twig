@@ -1,0 +1,35 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="../template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/scoreboard.css">
+{% endblock %}
+
+{% block content %}
+  <!-- -->
+  <div class="chart-container" style="position:relative; height: 90vh; width: 95vw" >
+    <canvas id="scoreboard"></canvas>
+  </div>
+  <div class="avatar-container"></div>
+  <div class="animation-container">
+    <img src="../img/avatar/giphy.webp" class="firework-animation" alt="">
+  </div>
+  <audio src="../music/tada.mp3" id="tada"></audio>
+  <audio src="../music/succes_queen.mp3" id="signature_goal"></audio>
+  <audio src="../music/succes_mario.mp3" id="rdv_goal"></audio>
+  <input type="hidden" name="color_scoreboard_rdv" id="color_scoreboard_rdv" value="{{ scoreboard.color.rdv }}">
+  <input type="hidden" name="color_scoreboard_signature" id="color_scoreboard_signature" value="{{ scoreboard.color.signature }}">
+
+{% endblock %}
+
+{% block script %}
+  <script src="../template/vendor/jquery/jquery.min.js"></script>
+  <script src="../template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../template/js/sb-admin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js" charset="utf-8"></script>
+  <script src="../js/User.class.js" charset="utf-8"></script>
+  <script src="../js/display_scoreboard.js" charset="utf-8"></script>
+{% endblock %}

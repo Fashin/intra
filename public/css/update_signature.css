@@ -1,0 +1,15 @@
+.setup-objectif { border-bottom: 1px solid #377DAE; margin-bottom: 10px; padding-bottom: 10px; }
+.setup-objectif .signature-goal, .rdv-goal { display: inline-block; }
+.setup-objectif .signature-goal input, .rdv-goal input { width: 200px; padding-left: 10px; }
+.telepro { display: inline-block; text-align: center; margin: 0 20px 0 20px; }
+.telepro .avatar img
+{
+  border-radius: 100%;
+  height: 100px; width: 100px;
+  border: 4px solid #377DAE;
+}
+.telepro .pseudo { font-weight: bold; font-size: 20px; color: #377DAE; }
+.telepro .btn-update .fa-plus-circle, .fa-minus-circle { font-size: 23px; cursor: pointer; }
+.telepro .btn-update .fa-minus-circle { color: #d30213; }
+.telepro .btn-update .nbr_signature { font-weight: bold; font-size: 30px; }
+.telepro .btn-update .fa-plus-circle { color : #37e011; }

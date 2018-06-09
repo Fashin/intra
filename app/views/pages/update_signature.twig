@@ -1,0 +1,45 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="../template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="../template/css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/update_signature.css">
+{% endblock %}
+
+{% block content %}
+  {% include 'header.twig' %}
+  <div class="setup-objectif">
+    <div class="signature-goal">
+      <label for="signature_goal">
+        Nombre de signatures du jour : <input type="number" id="signature_goal" value="{{ goal.signature_goal }}">
+      </label>
+    </div>
+    <div class="rdv-goal">
+      <label for="rdv_goal">
+        Nombre de rendez-vous du jour : <input type="number" id="signature_goal" value="{{ goal.rdv_goal }}">
+      </label>
+    </div>
+    <button type="button" name="update" class="update-max">Mettre a jour</button>
+  </div>
+    {% for telepro in telepros %}
+      <div class="telepro">
+        <div class="avatar"><img src="../{{ telepro.avatar }}" alt=""></div>
+        <div class="pseudo">{{ telepro.pseudo }}</div>
+        <div class="btn-update">
+          <i class="fa fa-minus-circle" aria-hidden="true"></i>
+          <span class="nbr_signature">{{ telepro.nbr_signature }}</span>
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        </div>
+      </div>
+    {% endfor %}
+  {% include 'footer.twig' %}
+{% endblock %}
+
+{% block script %}
+  <script src="../template/vendor/jquery/jquery.min.js"></script>
+  <script src="../template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../template/js/sb-admin.min.js"></script>
+  <script src="../js/update_signature.js" charset="utf-8"></script>
+{% endblock %}

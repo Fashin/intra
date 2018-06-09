@@ -1,0 +1,104 @@
+{% extends 'layout.twig' %}
+
+{% block style %}
+  <link href="template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="template/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="template/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="template/css/sb-admin.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+  <table class="list_users">
+    <tr>
+      <th>Login</th>
+      <th>Type</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <input type="hidden" name="id" value="{{ user.id }}">
+        <td>
+          <input type="text" name="pseudo" value="{{ user.pseudo }}">
+        </td>
+        <td>
+          <input type="mail" name="email" value="{{ user.email }}">
+        </td>
+        <td>
+          <select class="type-{{user.id}}" name="type">
+            {% if user.type == "super_admin" %}
+              <option value="super_admin" selected>super_admin</option>
+            {% else %}
+              <option value="super_admin">super_admin</option>
+            {% endif %}
+            {% if user.type == "admin" %}
+              <option value="admin" selected>admin</option>
+            {% else %}
+              <option value="admin">admin</option>
+            {% endif %}
+            {% if user.type == "telemarketing" %}
+              <option value="telemarketing" selected>telemarketing</option>
+            {% else %}
+              <option value="telemarketing">telemarketing</option>
+            {% endif %}
+          </select>
+        </td>
+        <td>
+          <input type="submit" name="update" value="Modifié">
+        </td>
+        <td>
+          <input type="submit" name="reset" value="Reset Password">
+        </td>
+        <td>
+          <input type="submit" name="delete" value="Supprimé">
+        </td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <form class="" action="/admin/new_user" method="post">
+    <input type="text" name="pseudo"  placeholder="pseudo">
+    <input type="mail" name="email" placeholder="Email">
+    <select class="" name="type">
+        <option value="super_admin">super_admin</option>
+        <option value="admin">admin</option>
+        <option value="telemarketing">telemarketing</option>
+    </select>
+    <input type="submit" name="send_user" value="Ajouté">
+  </form>
+
+  <table>
+    <tr>
+      <th>Nom du site</th>
+    </tr>
+    {% for site in sites %}
+    <tr>
+      <input type="hidden" name="id" value="{{ site.id }}">
+      <td>
+        <input type="text" name="site_name" value="{{ site.name }}"/>
+      </td>
+      <td>
+        <input type="text" name="site_link" value="{{ site.link }}">
+      </td>
+      <td>
+        <input type="submit" name="update_site" value="Modifié">
+      </td>
+      <td>
+        <input type="submit" name="delete_site" value="Supprimé">
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <form class="" action="/admin/new_site" method="post">
+    <input type="text" name="site_url" placeholder="Site url">
+    <input type="text" name="site_link" placeholder="Site link">
+    <input type="submit" name="send_site" value="Sauvegarder">
+  </form>
+
+{% endblock %}
+
+{% block script %}
+  <script src="template/vendor/jquery/jquery.min.js"></script>
+  <script src="template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="template/js/sb-admin.min.js"></script>
+  <script src="js/admin_space.js" charset="utf-8"></script>
+{% endblock %}

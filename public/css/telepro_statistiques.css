@@ -1,0 +1,28 @@
+.display { margin-bottom: 30px;  }
+.display .display_agenda, .display_current_leads { display: inline-block; }
+.display .display_current_leads { float: right; margin-right: 80px; }
+.filter { margin-bottom: 30px; }
+.listStatistiques tr { cursor: pointer; }
+.listStatistiques tr td:hover { background: #B1DEEF; }
+.pop_up
+{
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  background: rgba(170, 170, 170, 0.5);
+  display: none;
+}
+
+.pop_up .content
+{
+  position: relative;
+  top: 20px; left: 10vw;
+  width: 80%; height: 100%;
+  background: white;
+  padding: 50px 20px 0 20px;
+}
+
+.listLeads tr { cursor: pointer; }
+.listLeads tbody tr:hover { background: #B1DEEF; }
+
+.pop_up .content .telepro-selector { height: 60px; text-align: center; }
+.pop_up .content .telepro-selector .fa { color: #377DAE; cursor: pointer; font-size: 30px; margin-left: 30px; }

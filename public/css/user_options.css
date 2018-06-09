@@ -1,0 +1,20 @@
+input
+{
+  display: block;
+  margin: 0 0 10px 200px;
+}
+
+input[name="new_password"], input[name="new_password_confirm"], input[name="old_password"]
+{
+  width: 300px;
+}
+
+.params { display: inline-block; }
+
+.params-avatar { float: right; margin: 50px 200px 0 0; }
+
+.params-avatar .avatar input[type="file"] { display: inline-block; margin: 0; }
+
+.params-avatar input[type="submit"] { margin: 0; float: right; }
+
+input[type="color"] { display: inline-block; }
